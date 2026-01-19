@@ -9,3 +9,19 @@ spring:
     url: jdbc:postgresql://localhost:5432/votacao
     username: votacao_user
     password: votacao_pass
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.orm.jdbc.bind: trace
