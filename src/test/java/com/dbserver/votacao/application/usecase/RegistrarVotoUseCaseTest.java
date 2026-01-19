@@ -178,14 +178,15 @@ class RegistrarVotoUseCaseTest {
 
     when(clock.agora()).thenReturn(agora);
     when(pautaRepo.buscarPorId(pautaId))
-            .thenReturn(Optional.of(new Pauta(UUID.randomUUID(), "Pauta", null, agora)));
+        .thenReturn(Optional.of(new Pauta(UUID.randomUUID(), "Pauta", null, agora)));
     when(sessaoRepo.buscarPorPautaId(pautaId)).thenReturn(Optional.empty());
 
     final var useCase = new RegistrarVotoUseCase(pautaRepo, sessaoRepo, votoRepo, cpfPort, clock);
     final var ex =
-            assertThrows(
-                    RegraDeNegocioException.class,
-                    () -> useCase.executar(new RegistrarVotoCommand(pautaId, "12345678901", VotoValor.SIM)));
+        assertThrows(
+            RegraDeNegocioException.class,
+            () ->
+                useCase.executar(new RegistrarVotoCommand(pautaId, "12345678901", VotoValor.SIM)));
 
     assertEquals("Sessão não encontrada para esta pauta", ex.getMessage());
     verifyNoInteractions(votoRepo, cpfPort);
