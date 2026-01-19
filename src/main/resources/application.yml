@@ -4,3 +4,8 @@ server:
 spring:
   application:
     name: desafio-votacao
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/votacao
+    username: votacao_user
+    password: votacao_pass

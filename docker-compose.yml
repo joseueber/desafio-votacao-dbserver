@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: desafio-votacao-postgres
+    environment:
+      POSTGRES_DB: votacao
+      POSTGRES_USER: votacao_user
+      POSTGRES_PASSWORD: votacao_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U votacao_user -d votacao"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pgdata:
