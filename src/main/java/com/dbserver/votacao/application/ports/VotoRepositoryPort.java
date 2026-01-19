@@ -1,7 +1,7 @@
 package com.dbserver.votacao.application.ports;
 
 import com.dbserver.votacao.domain.Voto;
-import com.dbserver.votacao.domain.VotoValor;
+import com.dbserver.votacao.domain.enums.VotoValor;
 import java.util.Map;
 import java.util.UUID;
 

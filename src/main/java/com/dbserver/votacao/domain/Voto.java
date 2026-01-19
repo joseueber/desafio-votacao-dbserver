@@ -1,5 +1,6 @@
 package com.dbserver.votacao.domain;
 
+import com.dbserver.votacao.domain.enums.VotoValor;
 import java.time.Instant;
 import java.util.Objects;
 import java.util.Optional;

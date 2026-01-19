@@ -1,4 +1,4 @@
-package com.dbserver.votacao.domain;
+package com.dbserver.votacao.domain.enums;
 
 public enum SessaoStatus {
   ABERTA,
