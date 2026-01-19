@@ -10,4 +10,3 @@ https://github.com/dbserver/desafio-votacao
 
 ### Qualidade de código
 Este projeto utiliza Spotless com Google Java Format para padronização automática do código-fonte.
-
