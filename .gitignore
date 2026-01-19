@@ -1,2 +1,12 @@
-# IntelliJ
+# Gradle
+.gradle
+build/
+gradle/
+
+# IDEs
 .idea
+*.iml
+.vscode/
+
+# OS
+.DS_Store
