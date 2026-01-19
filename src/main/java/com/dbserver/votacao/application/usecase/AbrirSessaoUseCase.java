@@ -7,7 +7,6 @@ import com.dbserver.votacao.application.ports.PautaRepositoryPort;
 import com.dbserver.votacao.application.ports.SessaoRepositoryPort;
 import com.dbserver.votacao.application.usecase.commands.AbrirSessaoCommand;
 import com.dbserver.votacao.domain.SessaoVotacao;
-import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -31,8 +30,7 @@ public class AbrirSessaoUseCase {
               throw new RegraDeNegocioException("Já existe sessão para esta pauta");
             });
 
-    final var sessao =
-        SessaoVotacao.abrir(UUID.randomUUID(), pautaId, clock.agora(), command.duracao());
+    final var sessao = SessaoVotacao.abrir(pautaId, clock.agora(), command.duracao());
     return sessaoRepository.salvar(sessao);
   }
 }

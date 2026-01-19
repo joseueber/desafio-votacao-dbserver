@@ -26,6 +26,10 @@ public final class Voto {
     this.criadoEm = Objects.requireNonNull(criadoEm);
   }
 
+  public static Voto novo(UUID pautaId, String associadoCpf, VotoValor valor, Instant criadoEm) {
+    return new Voto(null, pautaId, associadoCpf, valor, criadoEm);
+  }
+
   private static String validarCpf(String cpf) {
     return Optional.ofNullable(cpf)
         .orElseThrow(() -> new IllegalArgumentException("associadoCpf não pode ser nulo"))

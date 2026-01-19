@@ -9,7 +9,6 @@ import com.dbserver.votacao.application.ports.SessaoRepositoryPort;
 import com.dbserver.votacao.application.ports.VotoRepositoryPort;
 import com.dbserver.votacao.application.usecase.commands.RegistrarVotoCommand;
 import com.dbserver.votacao.domain.Voto;
-import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -48,8 +47,7 @@ public class RegistrarVotoUseCase {
       throw new RegraDeNegocioException("CPF já votou nesta pauta");
     }
 
-    final var voto =
-        new Voto(UUID.randomUUID(), pautaId, cpfNormalizado, command.valor(), clock.agora());
+    final var voto = Voto.novo(pautaId, cpfNormalizado, command.valor(), clock.agora());
     return votoRepository.salvar(voto);
   }
 }

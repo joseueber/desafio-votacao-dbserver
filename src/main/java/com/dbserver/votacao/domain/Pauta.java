@@ -16,10 +16,14 @@ public final class Pauta {
   private final Instant criadaEm;
 
   public Pauta(UUID id, String titulo, String descricao, Instant criadaEm) {
-    this.id = Objects.requireNonNull(id, "id não pode ser nulo");
+    this.id = id;
     this.titulo = validarTitulo(titulo);
     this.descricao = descricao;
     this.criadaEm = Objects.requireNonNull(criadaEm, "criadaEm não pode ser nulo");
+  }
+
+  public static Pauta nova(String titulo, String descricao, Instant criadaEm) {
+    return new Pauta(null, titulo, descricao, criadaEm);
   }
 
   private static String validarTitulo(String titulo) {
