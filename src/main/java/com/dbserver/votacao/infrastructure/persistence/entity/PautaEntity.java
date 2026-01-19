@@ -5,6 +5,9 @@ import java.time.Instant;
 import java.util.UUID;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 
 @Getter
 @Setter
@@ -13,7 +16,9 @@ import lombok.Setter;
 public class PautaEntity {
 
   @Id
-  @Column(columnDefinition = "uuid")
+  @Generated(GenerationTime.INSERT)
+  @Column(name = "id", columnDefinition = "uuid", updatable = false, nullable = false)
+  @ColumnDefault("uuid_generate_v4()")
   private UUID id;
 
   @Column(nullable = false, length = 200)

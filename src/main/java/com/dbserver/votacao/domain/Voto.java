@@ -19,7 +19,7 @@ public final class Voto {
   private final Instant criadoEm;
 
   public Voto(UUID id, UUID pautaId, String associadoCpf, VotoValor valor, Instant criadoEm) {
-    this.id = Objects.requireNonNull(id);
+    this.id = id;
     this.pautaId = Objects.requireNonNull(pautaId);
     this.associadoCpf = validarCpf(associadoCpf);
     this.valor = Objects.requireNonNull(valor);

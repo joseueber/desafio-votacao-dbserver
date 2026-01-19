@@ -1,4 +1,4 @@
-package com.dbserver.votacao.config;
+package com.dbserver.votacao.infrastructure.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
