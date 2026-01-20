@@ -40,7 +40,7 @@ public class RegistrarVotoUseCase {
     final var cpfNormalizado = command.associadoCpf();
     final var result = cpfValidation.validar(cpfNormalizado);
     if (result == CpfValidationPort.CpfValidationResult.UNABLE_TO_VOTE) {
-      throw new RecursoNaoEncontradoException("CPF inválido");
+      throw new RegraDeNegocioException("CPF não habilitado para votar");
     }
 
     if (votoRepository.existeVotoDaPautaPorCpf(pautaId, cpfNormalizado)) {

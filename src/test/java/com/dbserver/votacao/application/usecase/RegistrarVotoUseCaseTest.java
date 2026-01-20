@@ -129,7 +129,7 @@ class RegistrarVotoUseCaseTest {
     final var useCase = new RegistrarVotoUseCase(pautaRepo, sessaoRepo, votoRepo, cpfPort, clock);
 
     assertThrows(
-        RecursoNaoEncontradoException.class,
+            RegraDeNegocioException.class,
         () -> useCase.executar(new RegistrarVotoCommand(pautaId, "12345678901", VotoValor.SIM)));
   }
 
@@ -162,7 +162,7 @@ class RegistrarVotoUseCaseTest {
     final var useCase = new RegistrarVotoUseCase(pautaRepo, sessaoRepo, votoRepo, cpfPort, clock);
 
     assertThrows(
-        RegraDeNegocioException.class,
+            RegraDeNegocioException.class,
         () -> useCase.executar(new RegistrarVotoCommand(pautaId, "12345678901", VotoValor.SIM)));
   }
 

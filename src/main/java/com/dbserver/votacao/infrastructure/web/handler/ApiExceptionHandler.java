@@ -1,5 +1,6 @@
 package com.dbserver.votacao.infrastructure.web.handler;
 
+import com.dbserver.votacao.application.exceptions.CpfInvalidoException;
 import com.dbserver.votacao.application.exceptions.RecursoNaoEncontradoException;
 import com.dbserver.votacao.application.exceptions.RegraDeNegocioException;
 import java.time.Instant;
@@ -37,5 +38,11 @@ public class ApiExceptionHandler {
                 ex.getBindingResult().getFieldErrors().stream()
                     .map(f -> f.getField() + ": " + f.getDefaultMessage())
                     .toList()));
+  }
+
+  @ExceptionHandler(CpfInvalidoException.class)
+  public ResponseEntity<Map<String, Object>> handleCpfInvalido(CpfInvalidoException ex) {
+    return ResponseEntity.status(HttpStatus.NOT_FOUND)
+        .body(Map.of("timestamp", Instant.now().toString(), "erro", ex.getMessage()));
   }
 }

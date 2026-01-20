@@ -22,16 +22,6 @@ public class ApplicationBeansConfig {
   }
 
   @Bean
-  public CpfValidationPort cpfValidationPort() {
-    return cpf -> {
-      String digits = cpf == null ? "" : cpf.replaceAll("\\D", "");
-      return digits.length() == 11
-          ? CpfValidationPort.CpfValidationResult.ABLE_TO_VOTE
-          : CpfValidationPort.CpfValidationResult.UNABLE_TO_VOTE;
-    };
-  }
-
-  @Bean
   public CadastrarPautaUseCase cadastrarPautaUseCase(
       PautaRepositoryPort pautaRepositoryPort, ClockPort clockPort) {
     return new CadastrarPautaUseCase(pautaRepositoryPort, clockPort);
