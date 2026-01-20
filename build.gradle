@@ -45,13 +45,6 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-    // Testcontainers
-    testImplementation 'org.testcontainers:junit-jupiter'
-    testImplementation 'org.testcontainers:postgresql'
-
-    // Integração Spring Boot <-> Testcontainers (Boot 3+)
-    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
-
     spotless {
         java {
             googleJavaFormat('1.17.0')
