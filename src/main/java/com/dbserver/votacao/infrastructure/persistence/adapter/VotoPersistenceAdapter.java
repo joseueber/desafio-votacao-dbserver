@@ -1,7 +1,7 @@
 package com.dbserver.votacao.infrastructure.persistence.adapter;
 
 import com.dbserver.votacao.application.ports.VotoRepositoryPort;
-import com.dbserver.votacao.domain.Voto;
+import com.dbserver.votacao.domain.model.Voto;
 import com.dbserver.votacao.domain.enums.VotoValor;
 import com.dbserver.votacao.infrastructure.persistence.mapper.VotoMapper;
 import com.dbserver.votacao.infrastructure.persistence.repository.VotoJpaRepository;
@@ -9,8 +9,10 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class VotoPersistenceAdapter implements VotoRepositoryPort {
@@ -19,6 +21,7 @@ public class VotoPersistenceAdapter implements VotoRepositoryPort {
 
   @Override
   public Voto salvar(Voto voto) {
+    log.debug("Persistindo voto para a pauta: {}, associado: {}", voto.getPautaId(), voto.getAssociadoCpf());
     var saved = repository.save(VotoMapper.toEntity(voto));
     return VotoMapper.toDomain(saved);
   }

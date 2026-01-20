@@ -1,6 +1,6 @@
 package com.dbserver.votacao.infrastructure.persistence.mapper;
 
-import com.dbserver.votacao.domain.Pauta;
+import com.dbserver.votacao.domain.model.Pauta;
 import com.dbserver.votacao.infrastructure.persistence.entity.PautaEntity;
 
 public class PautaMapper {

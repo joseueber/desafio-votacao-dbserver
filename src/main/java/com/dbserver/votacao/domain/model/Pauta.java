@@ -1,4 +1,4 @@
-package com.dbserver.votacao.domain;
+package com.dbserver.votacao.domain.model;
 
 import java.time.Instant;
 import java.util.Objects;

@@ -7,7 +7,7 @@ import static org.mockito.Mockito.*;
 import com.dbserver.votacao.application.ports.ClockPort;
 import com.dbserver.votacao.application.ports.PautaRepositoryPort;
 import com.dbserver.votacao.application.usecase.commands.CadastrarPautaCommand;
-import com.dbserver.votacao.domain.Pauta;
+import com.dbserver.votacao.domain.model.Pauta;
 import java.time.Instant;
 import org.junit.jupiter.api.Test;
 

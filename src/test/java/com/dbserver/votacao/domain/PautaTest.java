@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.Instant;
 import java.util.UUID;
+
+import com.dbserver.votacao.domain.model.Pauta;
 import org.junit.jupiter.api.Test;
 
 class PautaTest {

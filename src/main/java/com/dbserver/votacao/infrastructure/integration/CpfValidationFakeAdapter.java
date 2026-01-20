@@ -3,8 +3,10 @@ package com.dbserver.votacao.infrastructure.integration;
 import com.dbserver.votacao.application.exceptions.CpfInvalidoException;
 import com.dbserver.votacao.application.ports.CpfValidationPort;
 import java.security.SecureRandom;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class CpfValidationFakeAdapter implements CpfValidationPort {
 
@@ -12,13 +14,17 @@ public class CpfValidationFakeAdapter implements CpfValidationPort {
 
     @Override
     public CpfValidationResult validar(String cpf) {
+        log.debug("Validando CPF (Fake): {}", cpf);
         final String digits = onlyDigits(cpf);
 
         if (!isValidCpf(digits)) {
+            log.warn("CPF inválido informado: {}", cpf);
             throw new CpfInvalidoException("CPF inválido");
         }
 
-        return random.nextBoolean() ? CpfValidationResult.ABLE_TO_VOTE : CpfValidationResult.UNABLE_TO_VOTE;
+        var result = random.nextBoolean() ? CpfValidationResult.ABLE_TO_VOTE : CpfValidationResult.UNABLE_TO_VOTE;
+        log.debug("Resultado da validação do CPF {}: {}", cpf, result);
+        return result;
     }
 
     private static String onlyDigits(String value) {

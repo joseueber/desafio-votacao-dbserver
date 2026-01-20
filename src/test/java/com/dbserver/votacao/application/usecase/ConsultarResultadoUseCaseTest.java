@@ -6,7 +6,7 @@ import static org.mockito.Mockito.*;
 import com.dbserver.votacao.application.exceptions.RecursoNaoEncontradoException;
 import com.dbserver.votacao.application.ports.PautaRepositoryPort;
 import com.dbserver.votacao.application.ports.VotoRepositoryPort;
-import com.dbserver.votacao.domain.Pauta;
+import com.dbserver.votacao.domain.model.Pauta;
 import com.dbserver.votacao.domain.enums.VotoValor;
 import java.time.Instant;
 import java.util.EnumMap;

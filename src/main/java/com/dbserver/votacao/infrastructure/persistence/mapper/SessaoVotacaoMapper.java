@@ -1,6 +1,6 @@
 package com.dbserver.votacao.infrastructure.persistence.mapper;
 
-import com.dbserver.votacao.domain.SessaoVotacao;
+import com.dbserver.votacao.domain.model.SessaoVotacao;
 import com.dbserver.votacao.domain.enums.SessaoStatus;
 import com.dbserver.votacao.infrastructure.persistence.entity.SessaoVotacaoEntity;
 

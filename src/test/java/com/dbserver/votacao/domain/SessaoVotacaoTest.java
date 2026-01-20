@@ -6,6 +6,8 @@ import com.dbserver.votacao.domain.enums.SessaoStatus;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.UUID;
+
+import com.dbserver.votacao.domain.model.SessaoVotacao;
 import org.junit.jupiter.api.Test;
 
 class SessaoVotacaoTest {

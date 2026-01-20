@@ -8,9 +8,11 @@ import com.dbserver.votacao.application.ports.PautaRepositoryPort;
 import com.dbserver.votacao.application.ports.SessaoRepositoryPort;
 import com.dbserver.votacao.application.ports.VotoRepositoryPort;
 import com.dbserver.votacao.application.usecase.commands.RegistrarVotoCommand;
-import com.dbserver.votacao.domain.Voto;
+import com.dbserver.votacao.domain.model.Voto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 public class RegistrarVotoUseCase {
 
@@ -22,32 +24,44 @@ public class RegistrarVotoUseCase {
 
   public Voto executar(RegistrarVotoCommand command) {
     final var pautaId = command.pautaId();
+    final var cpf = command.associadoCpf();
+
+    log.debug("Iniciando registro de voto. Pauta: {}, CPF: {}", pautaId, cpf);
 
     pautaRepository
         .buscarPorId(pautaId)
-        .orElseThrow(() -> new RecursoNaoEncontradoException("Pauta não encontrada"));
+        .orElseThrow(() -> {
+          log.warn("Falha ao votar: Pauta {} não encontrada", pautaId);
+          return new RecursoNaoEncontradoException("Pauta não encontrada");
+        });
 
     final var sessao =
         sessaoRepository
             .buscarPorPautaId(pautaId)
-            .orElseThrow(
-                () -> new RegraDeNegocioException("Sessão não encontrada para esta pauta"));
+            .orElseThrow(() -> {
+              log.warn("Falha ao votar: Sessão não encontrada para pauta {}", pautaId);
+              return new RegraDeNegocioException("Sessão não encontrada para esta pauta");
+            });
 
     if (!sessao.estaAbertaEm(clock.agora())) {
+      log.warn("Falha ao votar: Sessão encerrada para pauta {}", pautaId);
       throw new RegraDeNegocioException("Sessão de votação encerrada");
     }
 
-    final var cpfNormalizado = command.associadoCpf();
-    final var result = cpfValidation.validar(cpfNormalizado);
+    final var result = cpfValidation.validar(cpf);
     if (result == CpfValidationPort.CpfValidationResult.UNABLE_TO_VOTE) {
+      log.warn("Falha ao votar: CPF {} não habilitado para votar na pauta {}", cpf, pautaId);
       throw new RegraDeNegocioException("CPF não habilitado para votar");
     }
 
-    if (votoRepository.existeVotoDaPautaPorCpf(pautaId, cpfNormalizado)) {
+    if (votoRepository.existeVotoDaPautaPorCpf(pautaId, cpf)) {
+      log.warn("Falha ao votar: CPF {} já votou na pauta {}", cpf, pautaId);
       throw new RegraDeNegocioException("CPF já votou nesta pauta");
     }
 
-    final var voto = Voto.novo(pautaId, cpfNormalizado, command.valor(), clock.agora());
-    return votoRepository.salvar(voto);
+    final var voto = Voto.novo(pautaId, cpf, command.valor(), clock.agora());
+    var votoSalvo = votoRepository.salvar(voto);
+    log.info("Voto {} registrado com sucesso para a pauta {}", votoSalvo.getId(), pautaId);
+    return votoSalvo;
   }
 }

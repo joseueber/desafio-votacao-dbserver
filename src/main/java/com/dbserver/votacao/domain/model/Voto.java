@@ -1,4 +1,4 @@
-package com.dbserver.votacao.domain;
+package com.dbserver.votacao.domain.model;
 
 import com.dbserver.votacao.domain.enums.VotoValor;
 import java.time.Instant;

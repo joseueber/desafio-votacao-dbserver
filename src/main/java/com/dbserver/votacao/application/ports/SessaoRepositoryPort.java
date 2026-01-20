@@ -1,6 +1,6 @@
 package com.dbserver.votacao.application.ports;
 
-import com.dbserver.votacao.domain.SessaoVotacao;
+import com.dbserver.votacao.domain.model.SessaoVotacao;
 import java.util.Optional;
 import java.util.UUID;
 
