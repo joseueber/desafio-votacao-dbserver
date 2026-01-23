@@ -1,8 +1,8 @@
 package com.dbserver.votacao.infrastructure.persistence.adapter;
 
 import com.dbserver.votacao.application.ports.VotoRepositoryPort;
-import com.dbserver.votacao.domain.model.Voto;
 import com.dbserver.votacao.domain.enums.VotoValor;
+import com.dbserver.votacao.domain.model.Voto;
 import com.dbserver.votacao.infrastructure.persistence.mapper.VotoMapper;
 import com.dbserver.votacao.infrastructure.persistence.repository.VotoJpaRepository;
 import java.util.EnumMap;
@@ -21,7 +21,10 @@ public class VotoPersistenceAdapter implements VotoRepositoryPort {
 
   @Override
   public Voto salvar(Voto voto) {
-    log.debug("Persistindo voto para a pauta: {}, associado: {}", voto.getPautaId(), voto.getAssociadoCpf());
+    log.debug(
+        "Persistindo voto para a pauta: {}, associado: {}",
+        voto.getPautaId(),
+        voto.getAssociadoCpf());
     var saved = repository.save(VotoMapper.toEntity(voto));
     return VotoMapper.toDomain(saved);
   }

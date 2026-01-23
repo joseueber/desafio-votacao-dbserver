@@ -30,18 +30,20 @@ public class RegistrarVotoUseCase {
 
     pautaRepository
         .buscarPorId(pautaId)
-        .orElseThrow(() -> {
-          log.warn("Falha ao votar: Pauta {} não encontrada", pautaId);
-          return new RecursoNaoEncontradoException("Pauta não encontrada");
-        });
+        .orElseThrow(
+            () -> {
+              log.warn("Falha ao votar: Pauta {} não encontrada", pautaId);
+              return new RecursoNaoEncontradoException("Pauta não encontrada");
+            });
 
     final var sessao =
         sessaoRepository
             .buscarPorPautaId(pautaId)
-            .orElseThrow(() -> {
-              log.warn("Falha ao votar: Sessão não encontrada para pauta {}", pautaId);
-              return new RegraDeNegocioException("Sessão não encontrada para esta pauta");
-            });
+            .orElseThrow(
+                () -> {
+                  log.warn("Falha ao votar: Sessão não encontrada para pauta {}", pautaId);
+                  return new RegraDeNegocioException("Sessão não encontrada para esta pauta");
+                });
 
     if (!sessao.estaAbertaEm(clock.agora())) {
       log.warn("Falha ao votar: Sessão encerrada para pauta {}", pautaId);

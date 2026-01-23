@@ -2,10 +2,9 @@ package com.dbserver.votacao.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.dbserver.votacao.domain.model.Pauta;
 import java.time.Instant;
 import java.util.UUID;
-
-import com.dbserver.votacao.domain.model.Pauta;
 import org.junit.jupiter.api.Test;
 
 class PautaTest {

@@ -24,10 +24,11 @@ public class AbrirSessaoUseCase {
 
     pautaRepository
         .buscarPorId(pautaId)
-        .orElseThrow(() -> {
-          log.warn("Falha ao abrir sessão: Pauta {} não encontrada", pautaId);
-          return new RecursoNaoEncontradoException("Pauta não encontrada");
-        });
+        .orElseThrow(
+            () -> {
+              log.warn("Falha ao abrir sessão: Pauta {} não encontrada", pautaId);
+              return new RecursoNaoEncontradoException("Pauta não encontrada");
+            });
 
     sessaoRepository
         .buscarPorPautaId(pautaId)
@@ -39,7 +40,11 @@ public class AbrirSessaoUseCase {
 
     final var sessao = SessaoVotacao.abrir(pautaId, clock.agora(), command.duracao());
     var sessaoSalva = sessaoRepository.salvar(sessao);
-    log.info("Sessão {} aberta com sucesso para a pauta {}. Expira em {}", sessaoSalva.getId(), pautaId, sessaoSalva.getFechaEm());
+    log.info(
+        "Sessão {} aberta com sucesso para a pauta {}. Expira em {}",
+        sessaoSalva.getId(),
+        pautaId,
+        sessaoSalva.getFechaEm());
     return sessaoSalva;
   }
 }

@@ -19,7 +19,8 @@ public class ResultadoController {
   public ResultadoVotacaoResponse consultar(@PathVariable UUID pautaId) {
     log.info("Recebida requisição para consultar resultado da pauta: {}", pautaId);
     var result = consultarResultadoUseCase.executar(pautaId);
-    log.info("Resultado consultado com sucesso para a pauta: {}. Total: {}", pautaId, result.total());
+    log.info(
+        "Resultado consultado com sucesso para a pauta: {}. Total: {}", pautaId, result.total());
     return new ResultadoVotacaoResponse(
         result.pautaId(), result.totalSim(), result.totalNao(), result.total());
   }

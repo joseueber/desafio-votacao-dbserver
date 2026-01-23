@@ -3,11 +3,10 @@ package com.dbserver.votacao.domain;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.dbserver.votacao.domain.enums.SessaoStatus;
+import com.dbserver.votacao.domain.model.SessaoVotacao;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.UUID;
-
-import com.dbserver.votacao.domain.model.SessaoVotacao;
 import org.junit.jupiter.api.Test;
 
 class SessaoVotacaoTest {

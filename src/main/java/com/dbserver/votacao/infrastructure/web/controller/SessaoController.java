@@ -35,7 +35,8 @@ public class SessaoController {
 
     var sessao = abrirSessaoUseCase.executar(new AbrirSessaoCommand(pautaId, duracao));
 
-    log.info("Sessão aberta com sucesso para a pauta: {}. Expira em: {}", pautaId, sessao.getFechaEm());
+    log.info(
+        "Sessão aberta com sucesso para a pauta: {}. Expira em: {}", pautaId, sessao.getFechaEm());
 
     return new AbrirSessaoResponse(
         sessao.getId(),

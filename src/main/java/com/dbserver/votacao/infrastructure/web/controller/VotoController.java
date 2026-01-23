@@ -24,7 +24,10 @@ public class VotoController {
   @ResponseStatus(HttpStatus.CREATED)
   public RegistrarVotoResponse votar(
       @PathVariable UUID pautaId, @Valid @RequestBody RegistrarVotoRequest request) {
-    log.info("Recebida requisição de voto para a pauta: {}, associado: {}", pautaId, request.associadoCpf());
+    log.info(
+        "Recebida requisição de voto para a pauta: {}, associado: {}",
+        pautaId,
+        request.associadoCpf());
     var voto =
         registrarVotoUseCase.executar(
             new RegistrarVotoCommand(

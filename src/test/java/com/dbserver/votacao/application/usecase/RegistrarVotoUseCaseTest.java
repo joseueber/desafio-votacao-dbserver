@@ -10,11 +10,11 @@ import com.dbserver.votacao.application.ports.PautaRepositoryPort;
 import com.dbserver.votacao.application.ports.SessaoRepositoryPort;
 import com.dbserver.votacao.application.ports.VotoRepositoryPort;
 import com.dbserver.votacao.application.usecase.commands.RegistrarVotoCommand;
+import com.dbserver.votacao.domain.enums.SessaoStatus;
+import com.dbserver.votacao.domain.enums.VotoValor;
 import com.dbserver.votacao.domain.model.Pauta;
 import com.dbserver.votacao.domain.model.SessaoVotacao;
 import com.dbserver.votacao.domain.model.Voto;
-import com.dbserver.votacao.domain.enums.SessaoStatus;
-import com.dbserver.votacao.domain.enums.VotoValor;
 import java.time.Instant;
 import java.util.Optional;
 import java.util.UUID;
@@ -128,7 +128,7 @@ class RegistrarVotoUseCaseTest {
     final var useCase = new RegistrarVotoUseCase(pautaRepo, sessaoRepo, votoRepo, cpfPort, clock);
 
     assertThrows(
-            RegraDeNegocioException.class,
+        RegraDeNegocioException.class,
         () -> useCase.executar(new RegistrarVotoCommand(pautaId, "12345678901", VotoValor.SIM)));
   }
 
@@ -161,7 +161,7 @@ class RegistrarVotoUseCaseTest {
     final var useCase = new RegistrarVotoUseCase(pautaRepo, sessaoRepo, votoRepo, cpfPort, clock);
 
     assertThrows(
-            RegraDeNegocioException.class,
+        RegraDeNegocioException.class,
         () -> useCase.executar(new RegistrarVotoCommand(pautaId, "12345678901", VotoValor.SIM)));
   }
 

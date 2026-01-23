@@ -1,7 +1,7 @@
 package com.dbserver.votacao.infrastructure.persistence.mapper;
 
-import com.dbserver.votacao.domain.model.Voto;
 import com.dbserver.votacao.domain.enums.VotoValor;
+import com.dbserver.votacao.domain.model.Voto;
 import com.dbserver.votacao.infrastructure.persistence.entity.VotoEntity;
 
 public class VotoMapper {
