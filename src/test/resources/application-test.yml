@@ -1,4 +1,8 @@
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/votacao_test
+    username: votacao_test_user
+    password: votacao_test_pass
   jpa:
     hibernate:
       ddl-auto: validate
@@ -7,6 +11,7 @@ spring:
         format_sql: false
   flyway:
     enabled: true
+    locations: classpath:db/migration
 
 logging:
   level:

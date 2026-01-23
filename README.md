@@ -116,9 +116,9 @@ Passos:
 
 ## Endpoints Principais
 
-POST /api/v1/pautas  
-POST /api/v1/pautas/{pautaId}/sessao  
-POST /api/v1/pautas/{pautaId}/votos  
+POST /api/v1/pautas
+POST /api/v1/pautas/{pautaId}/sessao
+POST /api/v1/pautas/{pautaId}/votos
 GET  /api/v1/pautas/{pautaId}/resultado
 
 ---
@@ -126,7 +126,17 @@ GET  /api/v1/pautas/{pautaId}/resultado
 ## Testes
 - Testes unitários focados em domínio e casos de uso
 - Uso de mocks para isolamento das regras
-- Testes de integração com banco avaliados e removidos por dependência de ambiente Docker no Windows
+- Testes de integração com banco PostgreSQL separado (Docker)
+
+### Como executar os testes
+Pré-requisitos:
+- Java 17+
+- Docker e Docker Compose
+
+Passos:
+1. docker compose -f docker-compose.test.yml up -d
+2. ./gradlew test
+3. docker compose -f docker-compose.test.yml down
 
 ---
 
